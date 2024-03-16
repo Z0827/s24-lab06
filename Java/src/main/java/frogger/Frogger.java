@@ -36,18 +36,22 @@ public class Frogger {
      */
     public boolean move(boolean forward) {
         int nextPosition = this.position + (forward ? 1 : -1);
-        if (!isValid(nextPosition) || isOccupied(nextPosition)) {
+        if (!isValid(nextPosition) || road.isOccupied(nextPosition)) {
             return false;
         }
         this.position = nextPosition;
         return true;
     }
 
+    // This function should apparently not be here. It has nothing to do
+    // with the frogger. This is a bad cohesion and bad responsibility assign.
+    // move this to Road.
+
     // TODO: Do you notice any issues here?
-    public boolean isOccupied(int position) {
-        boolean[] occupied = this.road.getOccupied();
-        return occupied[position];
-    }
+    // public boolean isOccupied(int position) {
+    //     boolean[] occupied = this.road.getOccupied();
+    //     return occupied[position];
+    // }
     
     public boolean isValid(int position) {
         if (position < 0) return false;
@@ -61,7 +65,12 @@ public class Frogger {
      * @return true if record successful, else false.
      */
     public boolean recordMyself() {
-      boolean success = records.addRecord(firstName, lastName, phoneNumber, zipCode, state, gender);
+      // This is really a long parameter call
+      // Also will lead to code duplication
+      //boolean success = records.addRecord(firstName, lastName, phoneNumber, zipCode, state, gender);
+      
+      FroggerID id = new FroggerID(firstName, lastName, phoneNumber, zipCode, state, gender);
+      boolean success = records.addRecord(id);
       return success;
     }
 

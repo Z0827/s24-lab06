@@ -53,3 +53,12 @@ public class Drawing {
     }
 }
 
+// For the first one: 1. just take all of the inner content out and make them as a new function.
+// 2. make this an abstract class with implementation of those inner contents. Probably have implementation
+// of JPEGDrawing, PNGdrwaing, and they extends it with different Writer.
+// 3. Take this function to JPEGWriter and PNGWriter with one more parameter "this.shapes"
+
+// For the second one: 1. The shape should not take this lines parameter. It can just work with it
+// as it is a private field. Maybe shape should be an abstract class.
+// 2. Make the Shape and its implementation to a composite pattern. This works
+
